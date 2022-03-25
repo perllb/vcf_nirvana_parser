@@ -13,6 +13,8 @@ e.g. if running with `--nirvpath ./nirvana_files` you need the following structu
 - nirvana_files
 |_sample1.hard-filtered.annotated.nirvana.txt.json.gz
 |_sample2.hard-filtered.annotated.nirvana.txt.json.gz
+|_...
+
 ```
 
 
