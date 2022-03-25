@@ -1,5 +1,5 @@
 # vcf_nirvana_parser
-**Parse Nirvana-annotated vcfs into human-readable table format**
+**Parse Nirvana-annotated Somatic SNV/indel vcfs into human-readable table format**
 * NB! Only tested / developed for SNV Dragen VCFs annotated with Nirvana GRCh37'
 * Takes only Canonical transcripts (Ensembl or RefSeq) (Future versions will have option to use all transcripts - canonical or not)
 
@@ -41,24 +41,24 @@ e.g. if running with `--nirvpath ./nirvana_files` you need the following structu
 | ref_allele_depth |  Approximate read depth with reference allele  |   |   |   |
 | hgnc  |  HUGO Gene Nomenclature ID of gene |   |   |   |
 | Ensembl_transcript | Ensembl transcript ID (if variant overlap one such)  | https://www.ensembl.org/index.html  |   |   |
-| RefSeq_transcript  | RefSeq transcript ID (if variant overlap one such) |   |   |   |
+| RefSeq_transcript  | RefSeq transcript ID (if variant overlap one such) | https://www.ncbi.nlm.nih.gov/refseq/  |   |   |
 | bioType  | BioType of transcript (protein_coding,lincRNA etc) based on Ensembl/RefSeq annotation  |   |   |   |
-| globalMinorAllele  |   dbSNP is reporting the minor allele frequency for each rs included in  a default global population. Since this is being provided to distinguish common polymorphism from rare variants, the MAF is actually the second most frequent allele value. In other words, if there are 3 alleles, with frequencies of 0.50, 0.49, and 0.01, the MAF will be reported as 0.49. The current default global population is 1000Genome phase 3 genotype data from 2500 worldwide individuals, released in the May 2013 dataset.   | https://www.ncbi.nlm.nih.gov/projects/SNP/docs/rs_attributes.html  |   |   |
+| globalMinorAllele  |  dbSNP is reporting the minor allele frequency for each rs included in  a default global population. Since this is being provided to distinguish common polymorphism from rare variants, the MAF is actually the second most frequent allele value. In other words, if there are 3 alleles, with frequencies of 0.50, 0.49, and 0.01, the MAF will be reported as 0.49. The current default global population is 1000Genome phase 3 genotype data from 2500 worldwide individuals, released in the May 2013 dataset.   | https://www.ncbi.nlm.nih.gov/projects/SNP/docs/rs_attributes.html  |   |   |
 | globalMinorAlleleFreq  | As above - this is the frequency of GlobalMinorAllele  |   |   |   |
 | filterVCdragen  | Filters by Dragen - see explanation in link  | https://support-docs.illumina.com/SW/DRAGEN_v310/Content/SW/DRAGEN/PostSomaticFilters.htm  |   |   |
-| SomaticQuality  |  Quality Score of variant call |   |   |   |
-| clinVar_significance  |   |   |   |   |
-| clinVar_phenotype  |   |   |   |   |
-| regulatory_region  |   |   |   |   |
-| revel  |   |   |   |   |
-| dbsnp |   |   |   |   |
-| phylopScore  |   |   |   |   |
-| primateAI  |   |   |   |   |
-| transcript_consequence  |   |   |   |   |
-| aminoAcids  |   |   |   |   |
-| hgvsc  |   |   |   |   |
-| hgvsp  |   |   |   |   |
-|  polyPhenScore |   |   |   |   |
+| SomaticQuality  |  Quality Score of somatic variant call: "You can use somatic quality (SQ) as the primary metric to describe the confidence with which the caller made a somatic call. SQ is a Phred-scaled posterior probability reported as a format field for the tumor sample (exception: for homozygous reference calls in gVCF mode it is instead a likelihood ratio, analogous to hom-ref GQ as described in the germline section). Variants with SQ score below the SQ filter threshold are filtered out using the weak_evidence tag." | https://support-docs.illumina.com/SW/DRAGEN_v310/Content/SW/DRAGEN/SomaticMode.htm  |   |   |
+| clinVar_significance  | Clinical Significance of variant (ClinVar)  | ClinVar: https://www.ncbi.nlm.nih.gov/clinvar/intro/, ClinVar Significance https://www.ncbi.nlm.nih.gov/clinvar/docs/clinsig/  |   |   |
+| clinVar_phenotype  | Clinical Phenotypes of variant: ClinVar aggregates the names of medical conditions with a genetic basis from such sources as SNOMED CT, GeneReviews, Genetic Home Reference, Office of Rare Diseases, MeSH, and OMIM®. ClinVar also aggregates descriptions of associated traits from Human Phenotype Ontology (HPO), OMIM, and other sources.   | ClinVar: https://www.ncbi.nlm.nih.gov/clinvar/intro/  |   |   |
+| regulatory_region  | Ensembl Regulatory Regions at site  | https://www.ensembl.org/info/genome/funcgen/regulatory_features.html  |   |   |
+| revel  | REVEL is an ensemble method for predicting the pathogenicity of missense variants based on a combination of scores from 13 individual tools: MutPred, FATHMM v2.3, VEST 3.0, PolyPhen-2, SIFT, PROVEAN, MutationAssessor, MutationTaster, LRT, GERP++, SiPhy, phyloP, and phastCons.  |   |   |   |
+| dbsnp | dbSNP NCBI annotation of variant  | https://www.ncbi.nlm.nih.gov/snp/  |  https://illumina.github.io/NirvanaDocumentation/data-sources/revel |   |
+| phylopScore  | PhyloP (phylogenetic p-values) conservation scores are obtained from the [PHAST package] (http://compgen.bscb.cornell.edu/phast/) for multiple alignments of vertebrate genomes to the human genome. For GRCh38, the multiple alignments are against 19 mammals and for GRCh37, it is against 45 vertebrate genomes.  | https://illumina.github.io/NirvanaDocumentation/data-sources/phylop	  |   |   |
+| primateAI  |  Primate AI is a deep residual neural network for classifying the pathogenicity of missense mutations. The method is described in the publication: | Sundaram, L., Gao, H., Padigepati, S.R. et al. Predicting the clinical impact of human mutation with deep neural networks. Nat Genet 50, 1161–1170 (2018). https://doi.org/10.1038/s41588-018-0167-z  |   |   |
+| transcript_consequence  | Ensembl Variation - Calculated variant consequences: "For each variant that is mapped to the reference genome, we identify all overlapping Ensembl transcripts. We then use a rule-based approach to predict the effects that each allele of the variant may have on each transcript. "  | https://m.ensembl.org/info/genome/variation/prediction/predicted_data.html  |   |   |
+| aminoAcids  | AminoAcids affected. If missense mutation, it shows RefAA/AltAA. If synonymous mutation, shows the RefAA only  |   |   |   |
+| hgvsc  | Nomenclature for variant (cDNA)  |  https://varnomen.hgvs.org/ |   |   |
+| hgvsp  | Nomenclature for variant (Protein)  | https://varnomen.hgvs.org/  |   |   |
+| polyPhenScore |   |   |   |   |
 | polyPhenPred  |   |   |   |   |
 | siftPred  |   |   |   |   |
 | siftScore  |   |   |   |   |
