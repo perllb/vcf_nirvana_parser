@@ -1,4 +1,4 @@
-# vcf_nirvana_parser
+# VCF Nirvana Parser
 **Parse Nirvana-annotated Somatic SNV/indel vcfs into human-readable table format**
 * NB! Only tested / developed for SNV Dragen VCFs annotated with Nirvana GRCh37'
 * Takes only Canonical transcripts (Ensembl or RefSeq) (Future versions will have option to use all transcripts - canonical or not)
