@@ -1,9 +1,13 @@
 # VCF Nirvana Parser
 **Parse Nirvana-annotated Somatic SNV/indel vcfs into human-readable table format**
 * NB! Only tested / developed for SNV Dragen VCFs annotated with Nirvana GRCh37'
-* Takes only Canonical transcripts (Ensembl or RefSeq) (Future versions will have option to use all transcripts - canonical or not)
+
+#### Overview
+* For each variant in Dragen SNV vcf (hard-filtered)
+* Takes only variants that overlap canonical transcripts (Ensembl or RefSeq)
 * Prints one row pr canonical transcript pr variant. 
-* E.g. If one variant overlaps 3 different canonical transcripts, it will print one row for each with separate metrics (e.g. Sift, PolyPhen etc.)
+	* E.g. If one variant overlaps 3 different canonical transcripts, it will print one row for each with separate metrics (e.g. Sift, PolyPhen etc.)
+
 
 #### Nirvana Annotator
 https://illumina.github.io/NirvanaDocumentation/
