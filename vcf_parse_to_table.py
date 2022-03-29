@@ -10,7 +10,7 @@ import pandas as pd
 import argparse
 
 
-parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument("--indir", required=True, help="Path to input folder - all input files should be in this folder (no subfolders will be scanned)")
 parser.add_argument("--outdir", required=False, default="./outdir", help="Output directory")
 parser.add_argument("--mode", required=False, default="single", help="'single': create one parsed table pr input nirvana json.gz. 'joint': create one joint table from individual tables created in 'single' mode ")
