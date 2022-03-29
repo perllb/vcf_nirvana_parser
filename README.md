@@ -8,6 +8,11 @@
 	* Prints one row pr canonical transcript pr variant. 
 		* E.g. If one variant overlaps 3 different canonical transcripts, it will print one row for each with separate metrics (e.g. Sift, PolyPhen etc.)
 
+###### Modes
+1. `single`: Default. It will, for each input nirvana.json found in --indir folder, create one table with all annotation + AF and other vc metrics pr variant. See
+  - Run with `python vcf_parse_to_table.py --indir /path/to/nirvana-json-containing-folder --outdir /path/to/outdir --mode single ` (`--mode single` must not be specified, as 'single' is default behaviour)
+2. `joint`: Takes the tables created in 'single' mode, and combines them to a joint table with annotation pr variant + AF per sample. --indir should thus be the same as --outdir in 'single' mode.
+  - Run with `python vcf_parse_to_table.py --indir /path/to/outdir/from/single/mode --outdir /path/to/outdir --mode joint `
 
 #### Nirvana Annotator
 https://illumina.github.io/NirvanaDocumentation/
